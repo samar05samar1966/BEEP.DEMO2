@@ -1,0 +1,176 @@
+body {
+
+font-family: Arial, sans-serif;
+background:#f5f7fa;
+margin:0;
+
+}
+
+
+header {
+
+background:white;
+padding:25px;
+
+display:flex;
+align-items:center;
+gap:20px;
+
+}
+
+
+.logo img {
+
+width:80px;
+height:80px;
+
+object-fit:contain;
+
+}
+
+
+
+.hero {
+
+padding:50px;
+
+text-align:center;
+
+}
+
+
+
+button {
+
+background:#0066b3;
+
+color:white;
+
+border:none;
+
+padding:15px 25px;
+
+border-radius:8px;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+
+
+.cards {
+
+display:flex;
+
+gap:20px;
+
+padding:30px;
+
+}
+
+
+
+.card {
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+flex:1;
+
+box-shadow:0 3px 10px #ddd;
+
+}
+
+
+
+.steps {
+
+background:white;
+
+padding:30px;
+
+margin:30px;
+
+border-radius:15px;
+
+}
+
+
+
+.scan-animation {
+
+text-align:center;
+
+padding:60px;
+
+}
+
+
+
+.loader {
+
+width:100px;
+
+height:100px;
+
+border:8px solid #ddd;
+
+border-top:8px solid #0066b3;
+
+border-radius:50%;
+
+margin:30px auto;
+
+animation:spin 1s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+100% {
+transform:rotate(360deg);
+}
+
+}
+
+
+
+.profile {
+
+background:white;
+
+margin:30px;
+
+padding:30px;
+
+border-radius:15px;
+
+}
+
+
+
+.hidden {
+
+display:none;
+
+}
+
+
+
+.support {
+
+background:#eef6ff;
+
+padding:20px;
+
+margin:15px 0;
+
+border-radius:10px;
+
+}
