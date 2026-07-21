@@ -25,24 +25,32 @@
 
 
 <section class="hero">
+    <h2>Rider Profile Setup (Demo)</h2>
+    <form id="setupForm" style="display: flex; flex-direction: column; gap: 15px; max-width: 420px; width: 100%;">
+        
+        <h3>1. Personal Details</h3>
+        <input type="text" id="fullName" placeholder="Full Name" required>
+        <input type="text" id="pronouns" placeholder="Pronouns (e.g. they/them)" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <input type="text" id="address" placeholder="Address" required>
+        <input type="tel" id="emergencyContact" placeholder="Emergency Contact Phone" required>
 
-    <h2>
-        A simple tool for better transit experiences.
-    </h2>
+        <h3>2. Destination Station</h3>
+        <input type="text" id="station" placeholder="Destination BART Station" required>
 
-    <p>
-        The Blue Envelope Program allows riders to voluntarily share
-        communication preferences with BART employees through an NFC-enabled
-        accessibility card.
-    </p>
+        <h3>3. Communication Preferences (Select all that apply)</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="commPref" value="Speak calmly and allow extra processing time"> Speak calmly & allow response time</label>
+                <label><input type="checkbox" name="commPref" value="Prefers written communication / text"> Prefers written/text communication</label>
+                <label><input type="checkbox" name="commPref" value="Ask simple one-part questions"> Ask simple one-part questions</label>
+                <label><input type="checkbox" name="commPref" value="Explain actions before approaching"> Explain actions before approaching</label>
+            </div>
 
+        <h3>4. Desired Accommodation</h3>
+        <textarea id="accommodation" placeholder="How would you like to be accommodated?" rows="3" required></textarea>
 
-    <a href="scan.html">
-        <button>
-            Start NFC Scan
-        </button>
-    </a>
-
+        <button type="submit">Save & Go to Scan</button>
+    </form>
 </section>
 
 
@@ -129,7 +137,7 @@ Employee Training Resources →
 
 </footer>
 
-
+<script src="script.js"></script>
 
 </body>
 
