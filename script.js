@@ -1,4 +1,3 @@
-// Runs automatically when any page loads
 document.addEventListener("DOMContentLoaded", () => {
     
     // 1. Setup Form handling on index.html
@@ -7,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setupForm.addEventListener("submit", (e) => {
             e.preventDefault();
 
-            // Gather all selected communication options into an array
+            // Gather selected communication options
             const selectedComm = Array.from(document.querySelectorAll('input[name="commPref"]:checked'))
                 .map(checkbox => checkbox.value);
 
@@ -16,10 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 name: document.getElementById("fullName").value,
                 pronouns: document.getElementById("pronouns").value,
                 age: document.getElementById("age").value,
-                address: document.getElementById("address").value,
+                city: document.getElementById("city").value,
+                emergencyName: document.getElementById("emergencyName").value,
                 emergency: document.getElementById("emergencyContact").value,
                 station: document.getElementById("station").value,
-                comm: selectedComm, // Stored as an array
+                comm: selectedComm,
                 accommodation: document.getElementById("accommodation").value
             };
 
@@ -28,11 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "scan.html";
         });
     }
+
+    // 2. Accordion functionality for condition groups
+    document.querySelectorAll(".condition-header").forEach(button => {
+        button.addEventListener("click", () => {
+            const body = button.nextElementSibling;
+            const isVisible = body.style.display === "block";
+            body.style.display = isVisible ? "none" : "block";
+        });
+    });
 });
 
-// 2. Triggered by the "Simulate Scan" button on scan.html
+// 3. Triggered by the "Simulate Scan" button or timeout on scan.html
 function completeScan() {
-    // Retrieve stored data
     const rawData = sessionStorage.getItem("riderData");
 
     if (!rawData) {
@@ -41,19 +49,19 @@ function completeScan() {
         return;
     }
 
-    // Parse the stored data FIRST
     const rider = JSON.parse(rawData);
 
-    // Populate basic fields
-    document.getElementById("displayName").textContent = rider.name;
-    document.getElementById("displayPronouns").textContent = rider.pronouns;
-    document.getElementById("displayAge").textContent = rider.age;
-    document.getElementById("displayAddress").textContent = rider.address;
-    document.getElementById("displayEmergency").textContent = rider.emergency;
-    document.getElementById("displayStation").textContent = rider.station;
-    document.getElementById("displayAccommodation").textContent = rider.accommodation;
+    // Populate profile fields
+    document.getElementById("displayName").textContent = rider.name || "N/A";
+    document.getElementById("displayPronouns").textContent = rider.pronouns || "N/A";
+    document.getElementById("displayAge").textContent = rider.age || "N/A";
+    document.getElementById("displayCity").textContent = rider.city || "N/A";
+    document.getElementById("displayEmergencyName").textContent = rider.emergencyName || "N/A";
+    document.getElementById("displayEmergency").textContent = rider.emergency || "N/A";
+    document.getElementById("displayStation").textContent = rider.station || "N/A";
+    document.getElementById("displayAccommodation").textContent = rider.accommodation || "None specified.";
 
-    // Handle array of communication preferences nicely
+    // Render array of communication preferences cleanly
     const commContainer = document.getElementById("displayComm");
     if (Array.isArray(rider.comm) && rider.comm.length > 0) {
         commContainer.innerHTML = "<ul>" + rider.comm.map(pref => `<li>${pref}</li>`).join("") + "</ul>";
@@ -61,8 +69,12 @@ function completeScan() {
         commContainer.textContent = "No specific preferences selected.";
     }
 
-    // UI transitions
-    document.getElementById("scanText").innerHTML = "✓ Rider Profile Loaded";
-    document.querySelector(".loader").style.display = "none";
-    document.getElementById("profile").classList.remove("hidden");
+    // Toggle UI transitions
+    const scanText = document.getElementById("scanText");
+    const loader = document.querySelector(".loader");
+    const profile = document.getElementById("profile");
+
+    if (scanText) scanText.textContent = "Rider Profile Loaded";
+    if (loader) loader.style.display = "none";
+    if (profile) profile.classList.remove("hidden");
 }

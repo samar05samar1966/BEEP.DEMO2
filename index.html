@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BEEP | Blue Envelope Program</title>
     <link rel="stylesheet" href="style.css">
@@ -9,136 +10,180 @@
 
 <body>
 
-
 <header>
-
-   <a href="index.html" class="logo">
-    <img src="images/BEEPlogo.png" alt="BART Logo">
-   </a>
-
-    <div>
+    <a href="index.html" class="logo">
+        <img src="images/BEEPlogo.png" alt="BART Logo">
+    </a>
+    <div class="header-text">
         <h1>Blue Envelope Program</h1>
         <p>Creating safer and clearer communication for riders with hidden disabilities.</p>
     </div>
-
 </header>
 
-
-<section class="hero">
-    <h2>Rider Profile Setup (Demo)</h2>
-    <form id="setupForm" style="display: flex; flex-direction: column; gap: 15px; max-width: 420px; width: 100%;">
+<main class="hero">
+    <h2>Create a Rider Profile </h2>
+    <form id="setupForm">
         
         <h3>1. Personal Details</h3>
         <input type="text" id="fullName" placeholder="Full Name" required>
         <input type="text" id="pronouns" placeholder="Pronouns (e.g. they/them)" required>
-        <input type="number" id="age" placeholder="Age" required>
-        <input type="text" id="address" placeholder="Address" required>
+        <input type="number" id="age" placeholder="Age" min="1" required>
+        <input type="text" id="city" placeholder="City" required>
+        <input type="text" id="emergencyName" placeholder="Emergency Contact Name" required>
         <input type="tel" id="emergencyContact" placeholder="Emergency Contact Phone" required>
 
-        <h3>2. Destination Station</h3>
-        <input type="text" id="station" placeholder="Destination BART Station" required>
+        <h3>2. Frequently Used Station</h3>
+        <input type="text" id="station" placeholder="Station Name" required>
 
-        <h3>3. Communication Preferences (Select all that apply)</h3>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="commPref" value="Speak calmly and allow extra processing time"> Speak calmly & allow response time</label>
-                <label><input type="checkbox" name="commPref" value="Prefers written communication / text"> Prefers written/text communication</label>
-                <label><input type="checkbox" name="commPref" value="Ask simple one-part questions"> Ask simple one-part questions</label>
-                <label><input type="checkbox" name="commPref" value="Explain actions before approaching"> Explain actions before approaching</label>
+        <h3>3. Communication Preferences</h3>
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" name="commPref" value="Speak calmly and allow extra processing time">
+                <span>Speak calmly &amp; allow response time</span>
+            </label>
+            <label>
+                <input type="checkbox" name="commPref" value="Prefers written communication">
+                <span>Prefers written communication</span>
+            </label>
+            <label>
+                <input type="checkbox" name="commPref" value="Ask simple one-part questions">
+                <span>Ask simple one-part questions</span>
+            </label>
+            <label>
+                <input type="checkbox" name="commPref" value="Explain actions before approaching">
+                <span>Explain actions before approaching</span>
+            </label>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>4. Sharing Your Condition Names</h3>
+        <p class="small-text">
+            Choose how much information you would like BART employees to see.
+        </p>
+
+        <div class="share-options">
+            <label class="share-option">
+                <input type="radio" name="shareMode" value="all" checked>
+                <span>Share all condition names</span>
+            </label>
+            <label class="share-option">
+                <input type="radio" name="shareMode" value="some">
+                <span>Share only some condition names</span>
+            </label>
+            <label class="share-option">
+                <input type="radio" name="shareMode" value="none">
+                <span>Do not share condition names</span>
+            </label>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>5. Accessibility Categories</h3>
+
+        <div class="condition-group">
+            <button type="button" class="condition-header">Sensory</button>
+            <div class="condition-body">
+                <label><input type="checkbox"> Blind</label>
+                <label><input type="checkbox"> Low Vision</label>
+                <label><input type="checkbox"> Deaf</label>
+                <label><input type="checkbox"> Hard of Hearing</label>
             </div>
+        </div>
 
-        <h3>4. Desired Accommodation</h3>
-        <textarea id="accommodation" placeholder="How would you like to be accommodated?" rows="3" required></textarea>
+        <div class="condition-group">
+            <button type="button" class="condition-header">Cognitive &amp; Developmental</button>
+            <div class="condition-body">
+                <label><input type="checkbox"> Autism</label>
+                <label><input type="checkbox"> ADHD</label>
+                <label><input type="checkbox"> Dementia</label>
+                <label><input type="checkbox"> Learning Disability</label>
+            </div>
+        </div>
 
-        <button type="submit">Save & Go to Scan</button>
+        <div class="condition-group">
+            <button type="button" class="condition-header">Communication</button>
+            <div class="condition-body">
+                <label><input type="checkbox"> Speech Disability</label>
+                <label><input type="checkbox"> Non-verbal</label>
+                <label><input type="checkbox"> Aphasia</label>
+            </div>
+        </div>
+
+        <div class="condition-group">
+            <button type="button" class="condition-header">Mobility &amp; Physical</button>
+            <div class="condition-body">
+                <label><input type="checkbox"> Wheelchair User</label>
+                <label><input type="checkbox"> Limited Mobility</label>
+                <label><input type="checkbox"> Cerebral Palsy</label>
+            </div>
+        </div>
+
+        <div class="condition-group">
+            <button type="button" class="condition-header">Mental Health &amp; Neurological</button>
+            <div class="condition-body">
+                <label><input type="checkbox"> Anxiety</label>
+                <label><input type="checkbox"> PTSD</label>
+                <label><input type="checkbox"> Epilepsy</label>
+                <label><input type="checkbox"> Tourette Syndrome</label>
+            </div>
+        </div>
+
+        <div class="condition-group">
+            <button type="button" class="condition-header">Chronic &amp; Invisible Conditions</button>
+            <div class="condition-body">
+                <label><input type="checkbox"> Diabetes</label>
+                <label><input type="checkbox"> Asthma</label>
+                <label><input type="checkbox"> Chronic Pain</label>
+                <label><input type="checkbox"> Heart Condition</label>
+            </div>
+        </div>
+
+        <div class="condition-group">
+            <button type="button" class="condition-header">Other</button>
+            <div class="condition-body">
+                <textarea placeholder="Describe any additional conditions or accommodations"></textarea>
+            </div>
+        </div>
+
+        <h3>6. Requested Accommodation</h3>
+        <textarea id="accommodation" placeholder="How would you like BART employees to assist you?" rows="4"></textarea>
+
+        <button type="submit">Save &amp; Proceed to Scan</button>
     </form>
-</section>
-
-
+</main>
 
 <section class="cards">
+    <div class="card">
+        <h3>Communication</h3>
+        <p>Support riders by using clear language, speaking calmly, and allowing extra processing time.</p>
+    </div>
 
-<div class="card">
+    <div class="card">
+        <h3>Sensory Support</h3>
+        <p>Help reduce overwhelming situations by explaining actions before approaching.</p>
+    </div>
 
-<h3>💬 Communication</h3>
-
-<p>
-Support riders by using clear language,
-speaking calmly, and allowing extra processing time.
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>👂 Sensory Support</h3>
-
-<p>
-Help reduce overwhelming situations by explaining
-actions before approaching.
-</p>
-
-</div>
-
-
-
-
-<div class="card">
-
-<h3>♿ Mobility Assistance</h3>
-
-<p>
-Provide support while respecting rider independence.
-</p>
-
-</div>
-
-
+    <div class="card">
+        <h3>Mobility Assistance</h3>
+        <p>Provide support while respecting rider independence at all times.</p>
+    </div>
 </section>
-
-
 
 <section class="how">
-
-<h2>How BEEP Works</h2>
-
-
-<div class="steps">
-
-<p>
-<strong>1.</strong> Rider chooses to participate
-</p>
-
-<p>
-<strong>2.</strong> Employee scans Blue Envelope NFC tag
-</p>
-
-<p>
-<strong>3.</strong> Accessibility information appears instantly
-</p>
-
-<p>
-<strong>4.</strong> Employee provides personalized support
-</p>
-
-
-</div>
-
+    <h2>How BEEP Works</h2>
+    <div class="steps">
+        <p><strong>1.</strong> Rider chooses to participate in the program.</p>
+        <p><strong>2.</strong> Employee scans the Blue Envelope NFC tag.</p>
+        <p><strong>3.</strong> Accessibility information displays instantly on screen.</p>
+        <p><strong>4.</strong> Employee provides personalized assistance based on rider preferences.</p>
+    </div>
 </section>
 
-
-
 <footer>
-
-<a href="resources.html">
-Employee Training Resources →
-</a>
-
+    <a href="resources.html">Employee Training Resources &rarr;</a>
 </footer>
 
 <script src="script.js"></script>
-
 </body>
-
 </html>

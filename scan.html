@@ -1,94 +1,71 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NFC Scan | BEEP</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC Scan | BEEP</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
 <header>
-
-<a href="index.html" class="logo">
-    <img src="images/BEEPlogo.png" alt="BART Logo">
-   </a>
-<h1>
-Blue Envelope Program
-</h1>
-
-
+    <a href="index.html" class="logo">
+        <img src="images/BEEPlogo.png" alt="BART Logo">
+    </a>
+    <div class="header-text">
+        <h1>Blue Envelope Program</h1>
+    </div>
 </header>
 
+<main>
+    <section class="scan-animation">
+        <h2 id="scanText">Hold phone near Blue Envelope...</h2>
+        <div class="loader"></div>
+        <button type="button" onclick="completeScan()">Simulate Scan</button>
+    </section>
 
+    <section id="profile" class="profile hidden">
+        <h2>Scan Successful</h2>
+        <p class="subtitle">This rider has chosen to share accessibility information.</p>
+        
+        <div class="divider"></div>
 
+        <h2>Rider Profile</h2>
+        <div class="profile-details">
+            <p><strong>Name:</strong> <span id="displayName"></span> (<span id="displayPronouns"></span>)</p>
+            <p><strong>Age:</strong> <span id="displayAge"></span></p>
+            <p><strong>City:</strong> <span id="displayCity"></span></p>
+            <p><strong>Emergency Contact:</strong> <span id="displayEmergencyName"></span> &mdash; <span id="displayEmergency"></span></p>
+        </div>
 
-<section class="scan-animation">
+        <h2>Destination Station</h2>
+        <p class="highlight-box"><strong id="displayStation"></strong></p>
 
+        <h2>Support &amp; Accommodations</h2>
+        
+        <div class="support">
+            <h3>Communication Preferences</h3>
+            <div id="displayComm"></div>
+        </div>
 
-<h2 id="scanText">
-Scanning Blue Envelope...
-</h2>
+        <div class="support">
+            <h3>Requested Accommodation</h3>
+            <p id="displayAccommodation"></p>
+        </div>
 
-
-<div class="loader"></div>
-
-
-<button onclick="completeScan()">
-Simulate Scan
-</button>
-
-
-</section>
-
-
-
-<section id="profile" class="profile hidden">
-    <h2>✓ NFC Scan Successful</h2>
-    <p>This rider has chosen to share accessibility information.</p>
-    <hr>
-
-    <h2>👤 Rider Profile</h2>
-    <p><strong>Name:</strong> <span id="displayName"></span> (<span id="displayPronouns"></span>)</p>
-    <p><strong>Age:</strong> <span id="displayAge"></span></p>
-    <p><strong>Address:</strong> <span id="displayAddress"></span></p>
-    <p><strong>Emergency Contact:</strong> <span id="displayEmergency"></span></p>
-
-    <h2>🚉 Destination</h2>
-    <p><strong id="displayStation"></strong></p>
-
-    <h2>Support & Accommodations</h2>
-    
-    <div class="support">
-        <h3>💬 Communication Preference</h3>
-        <p id="displayComm"></p>
-    </div>
-
-    <div class="support">
-        <h3>♿ Requested Accommodation</h3>
-        <p id="displayAccommodation"></p>
-    </div>
-
-    <a href="index.html">
-        <button>Reset Demo / Return Home</button>
-    </a>
-</section>
-
-
-
-
-
+        <div class="action-wrapper">
+            <a href="index.html" class="btn-link">Reset Demo / Return Home</a>
+        </div>
+    </section>
+</main>
 
 <script src="script.js"></script>
-
-
+<script>
+window.onload = () => {
+    setTimeout(completeScan, 2200);
+};
+</script>
 </body>
-
 </html>
