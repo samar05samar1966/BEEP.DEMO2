@@ -10,6 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const selectedComm = Array.from(document.querySelectorAll('input[name="commPref"]:checked'))
                 .map(checkbox => checkbox.value);
 
+            // Gather selected sharing preference
+            const shareModeInput = document.querySelector('input[name="shareMode"]:checked');
+            const shareMode = shareModeInput ? shareModeInput.value : "all";
+
+            // Gather selected condition categories
+            const selectedConditions = Array.from(document.querySelectorAll('input[name="condition"]:checked'))
+                .map(checkbox => checkbox.value);
+
+            const otherCondition = document.getElementById("otherCondition") ? document.getElementById("otherCondition").value.trim() : "";
+            if (otherCondition) {
+                selectedConditions.push(`Other: ${otherCondition}`);
+            }
+
             // Create profile object
             const riderData = {
                 name: document.getElementById("fullName").value,
@@ -20,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 emergency: document.getElementById("emergencyContact").value,
                 station: document.getElementById("station").value,
                 comm: selectedComm,
+                shareMode: shareMode,
+                conditions: selectedConditions,
                 accommodation: document.getElementById("accommodation").value
             };
 
@@ -51,7 +66,7 @@ function completeScan() {
 
     const rider = JSON.parse(rawData);
 
-    // Populate profile fields
+    // Populate personal profile fields
     document.getElementById("displayName").textContent = rider.name || "N/A";
     document.getElementById("displayPronouns").textContent = rider.pronouns || "N/A";
     document.getElementById("displayAge").textContent = rider.age || "N/A";
@@ -61,12 +76,26 @@ function completeScan() {
     document.getElementById("displayStation").textContent = rider.station || "N/A";
     document.getElementById("displayAccommodation").textContent = rider.accommodation || "None specified.";
 
+    // Render array of accessibility categories/conditions based on share mode
+    const conditionsContainer = document.getElementById("displayConditions");
+    if (conditionsContainer) {
+        if (rider.shareMode === "none") {
+            conditionsContainer.textContent = "Rider preferred not to share specific condition names.";
+        } else if (Array.isArray(rider.conditions) && rider.conditions.length > 0) {
+            conditionsContainer.innerHTML = "<ul>" + rider.conditions.map(item => `<li>${item}</li>`).join("") + "</ul>";
+        } else {
+            conditionsContainer.textContent = "No specific conditions selected.";
+        }
+    }
+
     // Render array of communication preferences cleanly
     const commContainer = document.getElementById("displayComm");
-    if (Array.isArray(rider.comm) && rider.comm.length > 0) {
-        commContainer.innerHTML = "<ul>" + rider.comm.map(pref => `<li>${pref}</li>`).join("") + "</ul>";
-    } else {
-        commContainer.textContent = "No specific preferences selected.";
+    if (commContainer) {
+        if (Array.isArray(rider.comm) && rider.comm.length > 0) {
+            commContainer.innerHTML = "<ul>" + rider.comm.map(pref => `<li>${pref}</li>`).join("") + "</ul>";
+        } else {
+            commContainer.textContent = "No specific preferences selected.";
+        }
     }
 
     // Toggle UI transitions
